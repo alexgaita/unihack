@@ -1,6 +1,7 @@
 from django.contrib import admin
-from cantina.models import Person
+from .models import *
 # Register your models here.
-class AuthorAdmin(admin.ModelAdmin):
-    pass
-admin.site.register(Person, AuthorAdmin)
+admin.site.register(Customer)
+admin.site.register(OrderItem)
+admin.site.register(Order)
+admin.site.register(Product)
