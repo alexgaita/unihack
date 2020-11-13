@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from cantina.views import (Index, About,Register,checkout,
-                            cart,Meniu)
+from cantina.views import (index, About,Register,checkout,
+                            cart,meniu,updateItem)
 from django.conf import settings
 from django.conf.urls.static import static
 from cantina import views
@@ -24,12 +24,14 @@ from cantina import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',Index.as_view(),name='index'),
+    path('',views.index,name='index'),
     path('about/',About.as_view(),name='about'),
     path('register/',Register.as_view(),name='register'),
-    path('meniu/',Meniu.as_view(),name='meniu'),
+    path('meniu/',views.meniu,name='meniu'),
     path('cart/',views.cart,name='cart'),
-    path('checkout/',views.checkout,name='checkout')
+    path('checkout/',views.checkout,name='checkout'),
+    path('update_item/',views.updateItem,name='update_item')
+
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
