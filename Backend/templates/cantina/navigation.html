@@ -3,7 +3,7 @@
 {% load static %}
 <html>
 <head>
-	<title>Ecom</title>
+	<title>Politehnica</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 
@@ -28,12 +28,31 @@ var user = '{{request.user}}'
 		  return cookieValue;
 		}
 		const csrftoken = getToken('csrftoken');
+
+		function getCookie(name){
+			var cookieArr = document.cookie.split(";");
+
+			for (var i = 0; i < cookieArr.length; i++) {
+				var cookiePair = cookieArr[i].split("=");
+				if (name==cookiePair[0].trim()){
+					return decodeURIComponent(cookiePair[1]);
+				}
+			}
+			return null;
+		}
+		var cart = JSON.parse(getCookie('cart'))
+		if (cart == undefined){
+			cart = {}
+			console.log("Cart was created");
+			document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+		}
+	console.log("Cart: ",cart);
 </script>
 </head>
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	  <a class="navbar-brand" href="{% url 'index' %}">Ecom</a>
+	  <a class="navbar-brand" href="{% url 'index' %}">UPT Cantina</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
@@ -41,7 +60,7 @@ var user = '{{request.user}}'
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav mr-auto">
 	      <li class="nav-item active">
-	        <a class="nav-link" href="{% url 'meniu' %}">Store <span class="sr-only">(current)</span></a>
+	        <a class="nav-link" href="{% url 'meniu' %}">Meniu <span class="sr-only">(current)</span></a>
 	      </li>
 
 	    </ul>
